@@ -1,0 +1,136 @@
+{% load static %}
+<html>
+<head>
+
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/forum_table.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'users/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/paginacion.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/footer.css' %}">
+
+    {% if title %}
+        <title> Blog - {{title}} </title>
+    {% else %}
+        <title>Blog</title>
+    {% endif %}
+
+</head>
+<body>
+<!-- Ahora que tenemos un template, hay que agregar un bloque de código en los lugares que las templates hijas puedan
+sobreescribir block-->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Blog</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{% url 'Contacto' %}">Contacto</a>
+              <a class="nav-item nav-link" href="{% url 'sobre-nosotros' %}">About</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+            {% if user.is_authenticated %}
+              <a class="nav-item nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
+              <a class="nav-item nav-link" href="{% url 'perfil' user.id %}">Perfil</a>
+              <a class="nav-item nav-link" href="{% url 'Post_form' %}">Crear post</a>
+            {% else  %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+                <a class="nav-item nav-link" href="{% url 'registro' %}">Register</a>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+            {% for message in messages %}
+                <br>
+                <br>
+                <div class="alert alert-{{message.tags}}">
+                    {{message}}
+                </div>
+
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+          <br>
+          <br>
+    </main>
+    <div class="foot">
+            <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h5><i class="fa fa-road"></i> Foro destinado a unir a la gente</h5>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul class="list-unstyled">
+                                    <li><a href="">About</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul class="list-unstyled">
+                                    <li><a href="">Documentation</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+                        <ul class="nav">
+                            <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-twitter fa-lg"></i></a></li>
+                            <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-github fa-lg"></i></a></li>
+                        </ul>
+                        <br>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="text-md-right">Contactanos</h5>
+                        <hr>
+                    </div>
+                    <div class="col-md-5">
+                        <form>
+                            <fieldset class="form-group">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ingresa tu email">
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <textarea class="form-control" id="exampleMessage" placeholder="Mensaje"></textarea>
+                            </fieldset>
+                            <fieldset class="form-group text-xs-right">
+                                <button type="button" class="btn btn-secondary-outline btn-lg">Enviar</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+<!-- La clase container es para darle mejor padding y espacio
+     <div class="container">
+         block content endblock
+    </div>
+-->
+
+<!-- Optional JavaScript - CON TODO ESTO PODEMOS USAR LAS CLASES CSS DE BOOTSTRAP -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

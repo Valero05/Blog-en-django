@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+<!-- Ahora para que se sobreescriba exitosamente lo que pondremos, debemos insertar los block e identar lo que usaremos-->
+{% block content %}
+    <br>
+    <br>
+    <!-- Esto de abajo es un bloque de código en django -->
+    <!-- Esto de abajo es cómo se llama a una variable en django -->
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ object.autor }}</a>
+                {% if object.autor == user %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'Post-Update' object.id %}">Actualizar</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'Post-Delete' object.id %}">Eliminar</a>
+                </div>
+                {% endif %}
+              <small class="text-muted">{{ object.fecha_posteada|date:"l d, F, Y."}}</small>
+            </div>
+            <h2 class="article-title">{{ object.titulo }}</h2>
+            <p class="article-content">{{ object.parrafo }}</p>
+          </div>
+        </article>
+    <!-- Esto de arriba se tiene que hacer para terminar loops o ifstatements -->
+
+{% endblock content %}
