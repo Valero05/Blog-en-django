@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% load static %}
+        <link rel="stylesheet" href="{% static 'blog/paginacion.css' %}">
+    </head>
+{% block content %}
+    <br>
+    <br>
+    {% for Post in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ Post.autor }} </a>
+              <small class="text-muted">{{ Post.fecha_posteada|date:"l d, F, Y."}}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'Post-Detalle' Post.id %}">{{ Post.titulo }}</a></h2>
+            <p class="article-content">{{ Post.parrafo }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
+

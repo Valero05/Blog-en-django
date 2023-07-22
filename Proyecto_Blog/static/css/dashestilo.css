@@ -1,0 +1,16 @@
+/* Agrega un estilo para el contenedor principal del dashboard */
+.container-fluid {
+    min-height: 100vh; /* Establece una altura mínima del 100% de la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Asegura que el contenido dentro del contenedor principal se expanda */
+  .d-flex {
+    flex: 1; /* El contenido se expandirá para ocupar el espacio restante en el contenedor */
+  }
+  
+  /* Elimina el margen superior del body para que el dashboard comience desde la parte superior */
+  body {
+    margin-top: 0;
+  }
