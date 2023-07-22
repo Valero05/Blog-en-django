@@ -1,0 +1,47 @@
+{% extends "blog/base.html" %}
+{% load static %}
+        <link rel="stylesheet" href="{% static 'blog/paginacion.css' %}">
+    </head>
+{% block content %}
+    <br>
+    <br>
+    <h1>Bienvenido al inicio del blog</h1>
+    {% for Post in Posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ Post.autor }} </a>
+              <small class="text-muted">{{ Post.fecha_posteada|date:"l d, F, Y."}}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'Post-Detalle' Post.id %}">{{ Post.titulo }}</a></h2>
+            <p class="article-content">{{ Post.parrafo }}</p>
+          </div>
+        </article>
+    {% endfor %}
+
+        <div class="box" id="pag">
+
+                {% if is_paginated %}
+                        {% if page_obj.has_previous %}
+                            <a class="btn btn-outline-primary" href="?page=1">Primera</a>
+                            <a class="btn btn-outline-primary" href="?page={{page_obj.previous_page}}">Anterior</a>
+                        {% endif %}
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                            <a class="btn btn-primary" href="{{num}}">{{num}}</a>
+                            {% endif %}
+                            {% if num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' and num != page_obj.number %}
+                                <a class="btn btn-outline-primary" href="?page={{ num }}">{{ num }}</a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                        <a class="btn btn-outline-primary" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                        <a class="btn btn-outline-primary" href="?page={{ page_obj.paginator.num_pages }}">Última</a>
+                        {% endif %}
+
+                {% endif %}
+
+        </div>
+
+{% endblock content %}
+
