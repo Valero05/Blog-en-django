@@ -8,4 +8,4 @@ pipenv install --dev
 
 Algunas de las funcionalidades:
 Puedes tener tu perfil al crear tu cuenta, subir una foto, descripcion, y ver tus posts realizados.
-Autenticación simple y permisos a ciertos users.
+Autenticación simple, permisos a los usuarios creados y si no tienes uno, no tienes acceso a las vistas y funcionalidades.
