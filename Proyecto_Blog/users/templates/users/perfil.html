@@ -1,5 +1,3 @@
-
-{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
 <head>
@@ -148,8 +146,8 @@
                     {% csrf_token %}
                     <fieldset>
                         <legend>Datos de perfil</legend>
-                        {{ u_form|crispy }}
-                        {{ p_form|crispy }}
+                        {{ u_form.as_p }}
+                        {{ p_form.as_p }}
                     </fieldset>
                     <div class="form-group">
                         <button type="submit" id="button">Actualizar</button>
