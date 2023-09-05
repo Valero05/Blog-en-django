@@ -33,17 +33,17 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'Contacto' %}">Contacto</a>
-              <a class="nav-item nav-link" href="{% url 'sobre-nosotros' %}">About</a>
+              <a class="nav-item nav-link 1" href="{% url 'Contacto' %}">Contacto</a>
+              <a class="nav-item nav-link 2" href="{% url 'sobre-nosotros' %}">About</a>
             </div>
             <div class="navbar-nav">
             {% if user.is_authenticated %}
-              <a class="nav-item nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
-              <a class="nav-item nav-link" href="{% url 'perfil' user.id %}">Perfil</a>
-              <a class="nav-item nav-link" href="{% url 'Post_form' %}">Crear post</a>
+              <a class="nav-item nav-link 3" href="{% url 'logout' %}">Cerrar sesión</a>
+              <a class="nav-item nav-link 4" href="{% url 'perfil' user.id %}">Perfil</a>
+              <a class="nav-item nav-link 5" href="{% url 'Post_form' %}">Crear post</a>
             {% else  %}
-                <a class="nav-item nav-link" href="{% url 'login' %}">Iniciar sesión</a>
-                <a class="nav-item nav-link" href="{% url 'registro' %}">Register</a>
+                <a class="nav-item nav-link 6" href="{% url 'login' %}">Iniciar sesión</a>
+                <a class="nav-item nav-link 7" href="{% url 'registro' %}">Register</a>
             {% endif %}
             </div>
           </div>
