@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'blog/paginacion.css' %}">
     <link rel="stylesheet" href="{% static 'blog/footer.css' %}">
 
+
     {% if title %}
         <title> Blog - {{title}} </title>
     {% else %}
@@ -24,7 +25,7 @@
 <body>
 
     <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <nav id='navbar' class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
           <a class="navbar-brand mr-4" href="/">Blog</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
